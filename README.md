@@ -1,2 +1,2 @@
 # test
--[smth](int.txt)
+-[smth](https://github.com/Gyerzix/test/blob/main/foo/int.txt)
