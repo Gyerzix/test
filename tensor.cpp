@@ -2,7 +2,7 @@
 #include <vector>
 
 using namespace std;
-//Класс для коэффициентов тензора
+//РљР»Р°СЃСЃ РґР»СЏ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ С‚РµРЅР·РѕСЂР°
 template <typename T>
 class tensor {
 private:
@@ -48,7 +48,7 @@ public:
 	
 };
 
-//Перегрузка операторов ввода/вывода для консоли
+//РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂРѕРІ РІРІРѕРґР°/РІС‹РІРѕРґР° РґР»СЏ РєРѕРЅСЃРѕР»Рё
 template <typename T>
 istream& operator>>(istream& stream, tensor<T>& Tensor) {
 	int rows, cols; stream >> rows >> cols;
@@ -80,7 +80,7 @@ ostream& operator<<(ostream& stream, const tensor<T>& Tensor) {
 	return stream;
 }
 
-//Операция транспонирования
+//РћРїРµСЂР°С†РёСЏ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёСЏ
 template <typename T>
 tensor<T> transpose(const tensor<T>& Tensor) {
 	int rows = Tensor.GetNumRows(); int cols = Tensor.GetNumColumns();
@@ -93,9 +93,9 @@ tensor<T> transpose(const tensor<T>& Tensor) {
 	return result;
 }
 
-//Сложение
+//РЎР»РѕР¶РµРЅРёРµ
 template <typename T>
-tensor<T> operator+(const tensor<T>& lhs, const tensor<T>& rhs) { // Операция сложения только для тензоров одинакового размера
+tensor<T> operator+(const tensor<T>& lhs, const tensor<T>& rhs) { // РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµРЅР·РѕСЂРѕРІ РѕРґРёРЅР°РєРѕРІРѕРіРѕ СЂР°Р·РјРµСЂР°
 	if ((lhs.GetNumColumns() != rhs.GetNumColumns()) || (lhs.GetNumRows() != rhs.GetNumRows())) {
 		throw("dimensions must be the same");
 	}
@@ -110,9 +110,9 @@ tensor<T> operator+(const tensor<T>& lhs, const tensor<T>& rhs) { // Операция сл
 		return result;
 	}
 }
-//Вычитание
+//Р’С‹С‡РёС‚Р°РЅРёРµ
 template <typename T>
-tensor<T> operator-(const tensor<T>& lhs, const tensor<T>& rhs) { // Операция вычитания только для тензоров одинакового размера
+tensor<T> operator-(const tensor<T>& lhs, const tensor<T>& rhs) { // РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµРЅР·РѕСЂРѕРІ РѕРґРёРЅР°РєРѕРІРѕРіРѕ СЂР°Р·РјРµСЂР°
 	if ((lhs.GetNumColumns() != rhs.GetNumColumns()) || (lhs.GetNumRows() != rhs.GetNumRows())) {
 		throw("dimensions must be the same");
 	}
@@ -127,7 +127,7 @@ tensor<T> operator-(const tensor<T>& lhs, const tensor<T>& rhs) { // Операция вы
 		return result;
 	}
 }
-//Деление
+//Р”РµР»РµРЅРёРµ
 template <typename T>
 tensor<T> operator/(const tensor<T>& Tensor, const int& k) {
 	int rows = Tensor.GetNumRows(); int cols = Tensor.GetNumColumns();
@@ -140,20 +140,20 @@ tensor<T> operator/(const tensor<T>& Tensor, const int& k) {
 	}
 	return result;
 }
-//Симметризация
+//РЎРёРјРјРµС‚СЂРёР·Р°С†РёСЏ
 template <typename T>
 tensor<T> Symmetrization(const tensor<T>& Tensor) {
 	tensor result = (Tensor + transpose(Tensor)) / 2;
-	return result; // result - симметричный тензор
+	return result; // result - СЃРёРјРјРµС‚СЂРёС‡РЅС‹Р№ С‚РµРЅР·РѕСЂ
 }
 
-//Антисимметризация
+//РђРЅС‚РёСЃРёРјРјРµС‚СЂРёР·Р°С†РёСЏ
 template <typename T>
 tensor<T> Antisymmetrization(const tensor<T>& Tensor) {
 	tensor<T> result = (Tensor - transpose(Tensor)) / 2;
-	return result; //result - антисимметричный тензор
+	return result; //result - Р°РЅС‚РёСЃРёРјРјРµС‚СЂРёС‡РЅС‹Р№ С‚РµРЅР·РѕСЂ
 }
-//Умножение тензоров
+//РЈРјРЅРѕР¶РµРЅРёРµ С‚РµРЅР·РѕСЂРѕРІ
 template <typename T>
 tensor<T> product(const vector<T>& rhs, const vector<T>& lhs) {
 	int rows = rhs.size(); int cols = lhs.size();
@@ -166,7 +166,7 @@ tensor<T> product(const vector<T>& rhs, const vector<T>& lhs) {
 	return result;
 }
 
-//След
+//РЎР»РµРґ
 template <typename T>
 int tr(const tensor<T>& Tensor) {
 	int trace = 0;
@@ -186,15 +186,15 @@ int main() {
 		tensor<int> A;
 		cin >> A;
 		cout << endl;
-		//Антисимметризация и симметризация
+		//РђРЅС‚РёСЃРёРјРјРµС‚СЂРёР·Р°С†РёСЏ Рё СЃРёРјРјРµС‚СЂРёР·Р°С†РёСЏ
 		tensor<int> B = Symmetrization(A);
 		tensor<int> C = Antisymmetrization(A);
 		cout << B + C;
 
-		//След - свертка тензора
+		//РЎР»РµРґ - СЃРІРµСЂС‚РєР° С‚РµРЅР·РѕСЂР°
 		cout << tr(A) << endl;
 
-		//Умножение тензоров
+		//РЈРјРЅРѕР¶РµРЅРёРµ С‚РµРЅР·РѕСЂРѕРІ
 		vector<int> v = { 1, 2, 3 };
 		vector<int> s = { 2, 4, 6 };
 		tensor<int> C = product(v, s);
